@@ -71,7 +71,7 @@ function scriviMassimoStorico(prezzoOggi, nomeSpreadsheet) {
     drawDown = calcolaDrawDown(prezzoOggi, massimoStoricoAttuale);
     if (drawDown <= -5) {
       inviaEmail(
-        "gdimaio9814@gmail.com",
+        "youremail",
         "Attuazione PADD",
         prezzoOggi,
         massimoStoricoAttuale,
