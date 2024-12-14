@@ -1,7 +1,13 @@
 function copyLastValueAndWriteNext() {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
   var priceToday;
-  if (isHolidayOrWeekEnd(new Date())) {
+  if (isHolidayOrWeekEnd(today)) {
     return;
+  } else if (isHolidayOrWeekEnd(tomorrow)) {
+    incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 1);
+    incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 2);
   } else {
     incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 1);
     priceToday = incollaSoloValoriUltimaCellaNonVuotaRange(
