@@ -9,7 +9,9 @@ function writeNextValue() {
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
-  if (!isWeekend(tomorrow) || !isHoliday(tomorrow)) {
+  console.log(!isWeekend(tomorrow));
+  console.log(!isHoliday(tomorrow));
+  if (!isWeekend(tomorrow) && !isHoliday(tomorrow)) {
     scriviInCellaVuotaSuccessivaARange(
       "Prezzi",
       "DataPrezzo",
