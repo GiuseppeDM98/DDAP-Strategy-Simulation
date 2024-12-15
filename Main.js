@@ -1,20 +1,15 @@
-function copyLastValueAndWriteNext() {
+//needs to run at the evening
+function copyLastValue() {
+  incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 1);
+  incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 2);
+}
+
+//needs to run at the evening
+function writeNextValue() {
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
-  var priceToday;
-  if (isHolidayOrWeekEnd(today)) {
-    return;
-  } else if (isHolidayOrWeekEnd(tomorrow)) {
-    incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 1);
-    incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 2);
-  } else {
-    incollaSoloValoriUltimaCellaNonVuotaRange("Prezzi", "DataPrezzo", 1);
-    priceToday = incollaSoloValoriUltimaCellaNonVuotaRange(
-      "Prezzi",
-      "DataPrezzo",
-      2
-    );
+  if (!isWeekend(tomorrow) || !isHoliday(tomorrow)) {
     scriviInCellaVuotaSuccessivaARange(
       "Prezzi",
       "DataPrezzo",
@@ -27,6 +22,15 @@ function copyLastValueAndWriteNext() {
       "B",
       "=GOOGLEFINANCE(J1)"
     );
-    scriviMassimoStorico(priceToday, "Prezzi");
   }
+}
+
+//needs to run at the morning
+function checkDrawDown() {
+  var priceToday = incollaSoloValoriUltimaCellaNonVuotaRange(
+    "Prezzi",
+    "DataPrezzo",
+    2
+  );
+  scriviMassimoStorico(priceToday, "Prezzi");
 }
