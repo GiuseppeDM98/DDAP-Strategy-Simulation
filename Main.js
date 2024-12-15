@@ -27,7 +27,7 @@ function writeNextValue() {
   }
 }
 
-//needs to run at the morning
+//needs to run every hour
 function checkDrawDown() {
   var priceToday = incollaSoloValoriUltimaCellaNonVuotaRange(
     "Prezzi",
